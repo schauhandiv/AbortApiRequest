@@ -9,7 +9,7 @@ import "./App.css";
 function App() {
   const [fetchRes, setFetchRes] = useState("");
   const [axiosRes, setAxiosRes] = useState("");
-  const [fetchClick, setFetchClick] = useState("");
+  const [fetchClick, setFetchClick] = useState(true);
   const [axiosClick, setAxiosClick] = useState("");
   const [axiosResPost, setAxiosResPost] = useState("");
   const [axiosClickPost, setAxiosPostClick] = useState("");
@@ -69,33 +69,36 @@ function App() {
 
   return (
     <div className="App">
-    <h2>Cancel Request</h2>
-      <div style={{backgroundColor: 'gainsboro', padding: '20px', margin:'10px', marginLeft:'20%', width:'600px'}}>
-        <p>This is usig fetch GET</p>
+    <div style={{ padding: '20px', margin:'auto', width:'600px'}}>
+      <h2>Cancel Request</h2>
+      <h5><i>(Each request takes 5 seconds to process)</i></h5>
+    </div>
+      <div style={{backgroundColor: 'gainsboro', padding: '20px', margin:'auto', width:'600px'}}>
+        <p>This is using fetch GET (AbortController)</p>
         <p>The response is = {fetchRes}</p>
         <button type="button" onClick={() => setFetchClick(!fetchClick)}>
-          Create Request (fetch api GET)
+          {fetchRes.includes('request created') ? "CANCEL Request" : "Create Request"}
         </button>
       </div>
-      <div style={{backgroundColor: 'powderblue', padding: '20px', margin:'10px', marginLeft:'20%', width:'600px'}}>
-        <p>This is usig Axios GET</p>
+      <div style={{backgroundColor: 'powderblue', padding: '20px', margin:'auto', width:'600px'}}>
+        <p>This is using Axios GET (CancelToken)</p>
         <p>The response is = {axiosRes}</p>
         <button type="button" onClick={() => setAxiosClick(!axiosClick)}>
-          Create Request (axios api GET)
+          {axiosRes.includes('request created') ? "CANCEL Request" : "Create Request"}
         </button>
       </div>
-      <div style={{backgroundColor: 'lavender', padding: '20px', margin:'10px', marginLeft:'20%', width:'600px'}}>
-        <p>This is usig Axios POST (CancelToken)</p>
+      <div style={{backgroundColor: 'lavender', padding: '20px', margin:'auto', width:'600px'}}>
+        <p>This is using Axios POST (CancelToken)</p>
         <p>The response is = {axiosResPost}</p>
         <button type="button" onClick={() => setAxiosPostClick(!axiosClickPost)}>
-          Create Request (axios api POST - with CancelToken)
+          {axiosResPost.includes('request created') ? "CANCEL Request" : "Create Request"}
         </button>
       </div>
-      <div style={{backgroundColor: 'pink', padding: '20px', margin:'10px', marginLeft:'20%', width:'600px'}}>
-        <p>This is usig Axios POST (AbortController)</p>
+      <div style={{backgroundColor: 'pink', padding: '20px', margin:'auto', width:'600px'}}>
+        <p>This is using Axios POST (AbortController)</p>
         <p>The response is = {axiosResPostAbort}</p>
         <button type="button" onClick={() => setAxiosPostClickAbort(!axiosClickPostAbort)}>
-          Create Request (axios api POST - with AbortController)
+          {axiosResPostAbort.includes('request created') ? "CANCEL Request" : "Create Request"}
         </button>
       </div>
     </div>
